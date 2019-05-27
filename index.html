@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.1.2/handlebars.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="script.js" charset="utf-8"></script>
+
+  </head>
+  <body>
+    <input type="text" name="" value="" placeholder="Inserire il titolo del film">
+    <button class="search" type="button" name="button">Search</button>
+    <div class="film_container">
+
+    </div>
+
+
+    <script id="valori_film" type="text/x-handlebars-template">
+      <div class="card">
+        <h1>Titolo: <span>{{titolo}}</span></h1>
+        <h1>Titolo Originale: <span>{{titolo_originale}}</span></h1>
+        <h1>Lingua: <span>{{lingua}}</span></h1>
+        <h1>Voto: <span>{{voto}}</span></h1>
+      </div>
+    </script>
+  </body>
+</html>

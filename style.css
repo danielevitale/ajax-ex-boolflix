@@ -1,0 +1,28 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+input, button {
+  height: 30px;
+}
+
+.film_container {
+  width: 100vw;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.card {
+  background-color: #f1f2b0;
+  width: 40%;
+  margin: 20px;
+  padding: 20px;
+}
+
+span {
+  font-size: 25px;
+  font-weight: lighter;
+}
