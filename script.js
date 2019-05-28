@@ -15,11 +15,23 @@ function film_card (info) {
   var risultati = info.results;
   var film_trovati = risultati.length;
   for (var i = 0; i < risultati.length; i++) {
+
+    var voto_arrotondato = Math.ceil((risultati[i].vote_average / 2));
+    console.log(voto_arrotondato);
+    var stelle = '';
+    for (var j = 0; j < voto_arrotondato; j++) {
+      stelle += '<i class="fas fa-star"></i>';
+    }
+    for (var z = 0; z < (5 - voto_arrotondato); z++) {
+      stelle += '<i class="far fa-star"></i>';
+    }
+
+
     var context = {
       titolo: risultati[i].title,
       titolo_originale: risultati[i].original_title,
       lingua: risultati[i].original_language,
-      voto: risultati[i].vote_average
+      voto: stelle
     }
     var html = template(context);
     $('.film_container').append(html);
@@ -28,8 +40,6 @@ function film_card (info) {
 
 // Funzione che richiama l'API e genera una card con i valori restituiti
 function chiamata_api() {
-  // Cancello le cards della ricerca precedente
-  $('.film').empty();
   // Leggo il valore digitato dall'utente
   var digitato = $('input').val();
   // Richiamo l'API
@@ -56,10 +66,14 @@ $(document).ready(function() {
 
   // Al click sul button parte la ricerca
   $("button").click(function(){
+    // Cancello le cards della ricerca precedente
+    $('.film_container').empty();
     chiamata_api();
   })
   // Nel digitare tasto invio parte la ricerca
-  $("input").keyup(function(event){
+  $("input").keypress(function(event){
+    // Cancello le cards della ricerca precedente
+    $('.film_container').empty();
     if (event.which == 13) {
       chiamata_api();
     }
