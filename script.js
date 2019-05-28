@@ -7,9 +7,10 @@
 // 1. Titolo 2. Titolo Originale 3. Lingua 4. Voto
 
 
-// Funzione che genera una card con i valori del fil e la inserisce nel html
+// Funzione che genera una card con i valori del film e la inserisce nel html
+// atraverso l'utilizzo di handlebars
 function film_card (info) {
-  var source = $("#valori_film").html();
+  var source = $("#template_film").html();
   var template = Handlebars.compile(source);
   var risultati = info.results;
   var film_trovati = risultati.length;
@@ -25,32 +26,43 @@ function film_card (info) {
   }
 }
 
+// Funzione che richiama l'API e genera una card con i valori restituiti
+function chiamata_api() {
+  // Cancello le cards della ricerca precedente
+  $('.film').empty();
+  // Leggo il valore digitato dall'utente
+  var digitato = $('input').val();
+  // Richiamo l'API
+  $.ajax({
+    url: 'https://api.themoviedb.org/3/search/movie',
+    method: 'GET',
+    data : {
+      api_key : '204fdbaa01b03d5fdaf748fd992c0eb7',
+      language : 'it',
+      query : digitato
+    },
+    success: function (data) {
+      // Richiamo la funzione e gli passo il risultato ottenuto dell' API
+      film_card (data);
+    },
+    error : function (richiesta,stato,errori) {
+    alert("E' avvenuto un errore. " + errori);
+    }
+  })
+}
+
 
 $(document).ready(function() {
+
   // Al click sul button parte la ricerca
   $("button").click(function(){
-    // Cancello le cards della ricerca precedente
-    $('.film').empty();
-    // Leggo il valore digitato dall'utente
-    var digitato = $('input').val();
-    // Richiamo l'API
-    $.ajax({
-      url: 'https://api.themoviedb.org/3/search/movie',
-      method: 'GET',
-      data : {
-        api_key : '204fdbaa01b03d5fdaf748fd992c0eb7',
-        language : 'it',
-        query : digitato
-      },
-      success: function (data) {
-        // Richiamo la funzione e gli passo il risultato ottenuto dell' API
-        film_card (data);
-      },
-      error : function (richiesta,stato,errori) {
-      alert("E' avvenuto un errore. " + errori);
-      }
-    })
-
+    chiamata_api();
+  })
+  // Nel digitare tasto invio parte la ricerca
+  $("input").keyup(function(event){
+    if (event.which == 13) {
+      chiamata_api();
+    }
   })
 
 })
