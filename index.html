@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>ajax-ex-boolflix</title>
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
@@ -19,11 +19,12 @@
     </div>
 
 
+
     <script id="template_film" type="text/x-handlebars-template">
       <div class="card">
         <h1>Titolo: <span>{{titolo}}</span></h1>
         <h1>Titolo Originale: <span>{{titolo_originale}}</span></h1>
-        <h1>Lingua: <span>{{lingua}}</span></h1>
+        <h1>Lingua: <span>{{{lingua}}}</span></h1>
         <h1>Voto: <span>{{{voto}}}</span></h1>
       </div>
     </script>

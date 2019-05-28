@@ -12,27 +12,50 @@
 function film_card (info) {
   var source = $("#template_film").html();
   var template = Handlebars.compile(source);
+
   var risultati = info.results;
   var film_trovati = risultati.length;
-  for (var i = 0; i < risultati.length; i++) {
-
+  for (var i = 0; i < film_trovati; i++) {
+    // Trasformo il voto in un umero compreso tra 0 e 5
     var voto_arrotondato = Math.ceil((risultati[i].vote_average / 2));
     console.log(voto_arrotondato);
+    // Inizializzo a 0 la var che conterrà le stringhe delle stelle
     var stelle = '';
-    for (var j = 0; j < voto_arrotondato; j++) {
+    // Creo la stringa che conterrà le stelle piene (concatenando il loro html)
+    for (var j = 1; j <= voto_arrotondato; j++) {
       stelle += '<i class="fas fa-star"></i>';
     }
-    for (var z = 0; z < (5 - voto_arrotondato); z++) {
+    var voto_massimo = 5;
+    // Aggiungo alla stringa delle stelle piene le stelle vuote (concatenando il loro html)
+    for (var z = 1; z <= (voto_massimo - voto_arrotondato); z++) {
       stelle += '<i class="far fa-star"></i>';
     }
 
+    var flag = '';
+    switch(risultati[i].original_language) {
+      case 'it':
+        flag = '<img src="imgflag/italy.png" alt="">'
+        break;
+      case 'en':
+        flag = '<img src="imgflag/united-kingdom.png" alt="">'
+        break;
+      case 'es':
+        flag = '<img src="imgflag/spain.png" alt="">'
+        break;
+      case 'fr':
+        flag = '<img src="imgflag/france.png" alt="">'
+        break;
+      default:
+        flag = risultati[i].original_language
+    }
 
     var context = {
       titolo: risultati[i].title,
       titolo_originale: risultati[i].original_title,
-      lingua: risultati[i].original_language,
+      lingua: flag,
       voto: stelle
     }
+    // Genero l'html del handlebars e lo inserisco nel contenitore delle film-cards
     var html = template(context);
     $('.film_container').append(html);
   }
