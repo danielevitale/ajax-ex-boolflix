@@ -19,13 +19,16 @@
     </div>
 
 
-
     <script id="template_film" type="text/x-handlebars-template">
       <div class="card">
-        <h1>Titolo: <span>{{titolo}}</span></h1>
-        <h1>Titolo Originale: <span>{{titolo_originale}}</span></h1>
-        <h1>Lingua: <span>{{{lingua}}}</span></h1>
-        <h1>Voto: <span>{{{voto}}}</span></h1>
+        <div class="img">{{{img}}}</div>
+        <div class="valori">
+        <h2>Titolo: <span>{{titolo}}</span></h2>
+        <h2>Titolo Originale: <span>{{titolo_originale}}</span></h2>
+        <h2>Lingua: <span>{{{lingua}}}</span></h2>
+        <h2>Voto: <span>{{{voto}}}</span></h2>
+        <h2>Tipo: <span>{{tipo}}</span></h2>
+        </div>
       </div>
     </script>
   </body>

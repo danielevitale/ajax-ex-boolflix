@@ -9,7 +9,7 @@ input, button {
 }
 
 .film_container {
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -22,7 +22,27 @@ input, button {
   padding: 20px;
 }
 
+.valori h2 {
+  margin-bottom: 10px;
+}
+
 span {
   font-size: 25px;
   font-weight: lighter;
+}
+
+.img, .valori {
+  float: left;
+}
+
+.img {
+  width: 35%;
+}
+
+.valori {
+  width: 65%;
+}
+
+.img img {
+  width: 154px;
 }
