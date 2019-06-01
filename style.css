@@ -37,6 +37,7 @@
   font-size: 40px;
   text-transform: uppercase;
   font-weight: bold;
+  line-height: 60px;
 }
 
 .searchbar .right input,
@@ -49,6 +50,10 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  background-color: white;
+  color: #565656;
+  font-weight: bold;
+  border: 2px solid red;
 }
 
 .searchbar .right input {

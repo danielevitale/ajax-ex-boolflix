@@ -186,18 +186,24 @@ $(document).ready(function() {
 
   // Al click sul button parte la ricerca
   $("button").click(function(){
-    // Cancello le cards della ricerca precedente
-    $('.container_film').empty();
-    chiamata_api();
-  })
-  // Nel digitare tasto invio parte la ricerca
-  $("input").keypress(function(event){
-    // Cancello le cards della ricerca precedente
-    $('.container_film').empty();
-    if (event.which == 13) {
+    // Verifico che l'utente abbia digitato qualcosa e che quindi l'input area non sia vuota
+    if ($("input").val() != '') {
+      // Cancello le cards della ricerca precedente
+      $('.container_film').empty();
       chiamata_api();
     }
   })
+  // Nel digitare tasto invio parte la ricerca
+    $("input").keypress(function(event){
+      // Verifico che l'utente abbia digitato qualcosa e che quindi l'input area non sia vuota
+      if ($("input").val() != '') {
+        // Cancello le cards della ricerca precedente
+        $('.container_film').empty();
+        if (event.which == 13) {
+          chiamata_api();
+        }
+      }
+    })
 
   // Quando il mouse entra sulla copertina di un film compare la card con le
   // caratteristiche del film
@@ -210,6 +216,5 @@ $(document).ready(function() {
     $(this).find('.card_valori').hide();
     $(this).find('.card_copertina').fadeIn(1000);
   })
-
 
 })
